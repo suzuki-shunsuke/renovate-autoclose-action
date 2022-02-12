@@ -1,0 +1,24 @@
+name: Close Renovate pull requests automatically
+description: Close Renovate pull requests automatically
+inputs:
+  renovate_login:
+    description: 'Renovate login'
+    default: 'app/renovate'
+    required: false
+  github_token:
+    description: 'GitHub Access Token'
+    default: ${{ github.token }}
+    required: false
+  skip_labels:
+    description: 'Pull Request labels separated with comma'
+    required: false
+  additional_query:
+    description: 'Additional Query'
+    required: false
+  created_before_minutes:
+    description: 'Pull Request which were created before over `created_before_minutes` were closed. By default, pull requests which were created before over 10 minutes were closed.'
+    default: 10
+    required: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
