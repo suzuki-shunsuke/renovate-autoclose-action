@@ -28,7 +28,7 @@ interface SearchResultNode {
 }
 
 function formatDate(date: Date): string {
-  return `${date.toISOString().slice(0, -4)}+00:00`;
+  return `${date.toISOString().slice(0, -5)}+00:00`;
 }
 
 export const run = async (): Promise<void> => {
@@ -43,7 +43,12 @@ export const run = async (): Promise<void> => {
   const created = formatDate(createdTime);
   const repo = getRepo();
   core.info('Getting pull requests');
-  const query = `type: ISSUE, last: 100, query: "is:open is:pr author:${author} repo:${repo} -label:${skipLabels} created<=${created} ${additionalQuery}"`;
+  let query = `type: ISSUE, last: 100, query: "is:open is:pr author:${author} repo:${repo} created:<=${created}`;
+  if (additionalQuery) {
+    query = `${query} ${additionalQuery}"`;
+  } else {
+    query = `${query}"`;
+  }
   core.info(query);
   const result: SearchRespPRs = await octokit.graphql(`
 query {
@@ -75,6 +80,8 @@ query {
       owner: repo.split('/')[0],
       repo: repo.split('/')[1],
       ref: node.headRefName,
+    }).catch(e => {
+      core.info(`Failed to delete a ref: title=${node.title} ref=${node.headRefName}: ${e}`);
     });
   }
 }

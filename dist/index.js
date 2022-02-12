@@ -8338,7 +8338,7 @@ const run_1 = __nccwpck_require__(7764);
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, run_1.run)();
 });
-main().catch((e) => core.setFailed(e instanceof Error ? e.message : JSON.stringify(e)));
+main().catch(e => core.setFailed(e instanceof Error ? e.message : JSON.stringify(e)));
 
 
 /***/ }),
@@ -8391,7 +8391,7 @@ function getRepo() {
     return process.env.GITHUB_REPOSITORY;
 }
 function formatDate(date) {
-    return `${date.toISOString().slice(0, -4)}+00:00`;
+    return `${date.toISOString().slice(0, -5)}+00:00`;
 }
 const run = () => __awaiter(void 0, void 0, void 0, function* () {
     const ghToken = core.getInput('github_token');
@@ -8405,7 +8405,13 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
     const created = formatDate(createdTime);
     const repo = getRepo();
     core.info('Getting pull requests');
-    const query = `type: ISSUE, last: 100, query: "is:open is:pr author:${author} repo:${repo} -label:${skipLabels} created<=${created} ${additionalQuery}"`;
+    let query = `type: ISSUE, last: 100, query: "is:open is:pr author:${author} repo:${repo} created:<=${created}`;
+    if (additionalQuery) {
+        query = `${query} ${additionalQuery}"`;
+    }
+    else {
+        query = `${query}"`;
+    }
     core.info(query);
     const result = yield octokit.graphql(`
 query {
@@ -8436,6 +8442,8 @@ query {
             owner: repo.split('/')[0],
             repo: repo.split('/')[1],
             ref: node.headRefName,
+        }).catch(e => {
+            core.info(`Failed to delete a ref: title=${node.title} ref=${node.headRefName}: ${e}`);
         });
     }
 });

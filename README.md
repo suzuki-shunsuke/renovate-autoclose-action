@@ -42,11 +42,28 @@ Nothing.
 
 name | default | description
 --- | --- | ---
-renovate_login | `app/renovate` | pull request author
+renovate_login | `app/renovate` | pull request author. If you use Self Hosted Renovate, please change.
 github_token | `${{ github.token }}` | GitHub Access Token
-skip_labels | `` | Pull Request labels separated with comma
-addtional_query | `` | Addtional Query
+addtional_query | '' | Addtional Query
 created_before_minutes | `10` | Pull Request which were created before over `created_before_minutes` were closed. By default, pull requests which were created before over 10 minutes were closed
+
+About `additional_query`, please see [Searching issues and pull requests](https://docs.github.com/en/search-github/searching-on-github/searching-issues-and-pull-requests) too.
+
+#### `addtional_query`
+
+By default, the following query is run.
+
+```
+type: ISSUE, last: 100, query: "is:open is:pr author:app/renovate repo:<$GITHUB_REPOSITORY> created:<=<CREATED_DATE>"
+```
+
+You can add filter by `additonal_query`.
+
+e.g.
+
+```yaml
+additiona_query: '-label:skip-autoclose'
+```
 
 #### `github_token`'s required permission
 

@@ -9,9 +9,6 @@ inputs:
     description: 'GitHub Access Token'
     default: ${{ github.token }}
     required: false
-  skip_labels:
-    description: 'Pull Request labels separated with comma'
-    required: false
   additional_query:
     description: 'Additional Query'
     required: false
