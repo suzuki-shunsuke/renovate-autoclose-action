@@ -9,8 +9,8 @@ inputs:
     description: 'GitHub Access Token'
     default: ${{ github.token }}
     required: false
-  additional_query:
-    description: 'Additional Query'
+  additional_filter:
+    description: 'Additional Filter'
     required: false
   created_before_minutes:
     description: 'Pull Request which were created before over `created_before_minutes` were closed. By default, pull requests which were created before over 10 minutes were closed.'
