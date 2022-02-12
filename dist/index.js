@@ -8398,7 +8398,7 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
     const octokit = github.getOctokit(ghToken);
     const author = core.getInput('renovate_login');
     const skipLabels = core.getInput('skip_labels');
-    const additionalQuery = core.getInput('additional_query');
+    const additionalFilter = core.getInput('additional_filter');
     const createdBeforeMinutes = core.getInput('created_before_minutes');
     const createdTime = new Date();
     createdTime.setTime(createdTime.getTime() - parseInt(createdBeforeMinutes) * 60 * 1000);
@@ -8406,8 +8406,8 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
     const repo = getRepo();
     core.info('Getting pull requests');
     let query = `type: ISSUE, last: 100, query: "is:open is:pr author:${author} repo:${repo} created:<=${created}`;
-    if (additionalQuery) {
-        query = `${query} ${additionalQuery}"`;
+    if (additionalFilter) {
+        query = `${query} ${additionalFilter}"`;
     }
     else {
         query = `${query}"`;
