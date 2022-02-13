@@ -69,6 +69,7 @@ additiona_filter: '-label:skip-autoclose'
 
 * pull requests - read and write (search and close pull requests)
 * contents - write (delete branches)
+* issues - read (filter pull requests with labels)
 
 ### Outputs
 
