@@ -79,7 +79,7 @@ query {
     await octokit.rest.git.deleteRef({
       owner: repo.split('/')[0],
       repo: repo.split('/')[1],
-      ref: node.headRefName,
+      ref: `heads/${node.headRefName}`,
     }).catch(e => {
       core.info(`Failed to delete a ref: title=${node.title} ref=${node.headRefName}: ${e}`);
     });
