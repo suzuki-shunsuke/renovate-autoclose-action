@@ -8,7 +8,7 @@ By enabling [automerge](https://docs.renovatebot.com/configuration-options/#auto
 But there would be some pull requests which can't be merged automatically.
 The number of pull requests which Renovate can create is limited by [prConcurrentLimit](https://docs.renovatebot.com/configuration-options/#prconcurrentlimit) and [branchConcurrentLimit](https://docs.renovatebot.com/configuration-options/#branchconcurrentlimit).
 So if pull requests are kept open, the number of pull requests which Renovate can create would be decreased.
-This isn't inconvenient if you want to update many dependencies automatically.
+This is inconvenient if you want to update many dependencies automatically.
 
 By running this action periodically,
 pull requests which are kept open would be closed and their branches are removed automatically then you can update many dependencies efficiently.
