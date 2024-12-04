@@ -7,4 +7,4 @@ registries:
 
 packages:
 - name: rhysd/actionlint@v1.7.4
-- name: reviewdog/reviewdog@v0.20.2
+- name: reviewdog/reviewdog@v0.20.3
