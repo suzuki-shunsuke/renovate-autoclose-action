@@ -1,22 +1,19 @@
+---
 name: actionlint
-
-on:
-  pull_request:
-    branches:
-    - main
-  push:
-    branches:
-    - main
-
+on: pull_request
+permissions: {}
 jobs:
-  test:
-    timeout-minutes: 30
-    runs-on: ubuntu-latest
+  actionlint:
+    runs-on: ubuntu-24.04
+    if: failure()
+    timeout-minutes: 10
+    permissions: {}
+    needs:
+      - main
     steps:
-    - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3
-      with:
-        persist-credentials: false
-    - uses: aquaproj/aqua-installer@e2d0136abcf70b7a2f6f505720640750557c4b33 # v3.1.1
-      with:
-        aqua_version: v2.45.1
-    - uses: suzuki-shunsuke/github-action-actionlint@4f0298e8f8b13fffbdc13207463d65e92205ad0c # v0.1.5
+      - run: exit 1
+  main:
+    uses: suzuki-shunsuke/actionlint-workflow/.github/workflows/actionlint.yaml@1af1919efef445ad960f5ab4cf370e47e961d721 # v2.0.0
+    permissions:
+      pull-requests: write
+      contents: read
