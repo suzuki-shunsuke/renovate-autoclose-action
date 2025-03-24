@@ -5,7 +5,7 @@
   "dependencies": {
     "@actions/core": "1.11.1",
     "@actions/github": "6.0.0",
-    "@types/node": "20.17.25"
+    "@types/node": "20.17.26"
   },
   "devDependencies": {
     "@vercel/ncc": "0.38.3",
