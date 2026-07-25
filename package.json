@@ -9,6 +9,6 @@
   },
   "devDependencies": {
     "@vercel/ncc": "0.44.1",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   }
 }
