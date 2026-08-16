@@ -8,7 +8,7 @@
     "@types/node": "24.13.3"
   },
   "devDependencies": {
-    "@vercel/ncc": "0.44.1",
+    "@vercel/ncc": "0.45.0",
     "typescript": "7.0.2"
   }
 }
