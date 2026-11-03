@@ -38,18 +38,18 @@ jobs:
 
 Nothing.
 
-### Opitonal Inputs
+### Optional Inputs
 
 name | default | description
 --- | --- | ---
 renovate_login | `app/renovate` | pull request author. If you use Self Hosted Renovate, please change.
 github_token | `${{ github.token }}` | GitHub Access Token
-additional_filter | '' | Addtional Query
+additional_filter | '' | Additional Query
 created_before_minutes | `10` | Pull Request which were created before over `created_before_minutes` were closed. By default, pull requests which were created before over 10 minutes were closed
 
 About `additional_filter`, please see [Searching issues and pull requests](https://docs.github.com/en/search-github/searching-on-github/searching-issues-and-pull-requests) too.
 
-#### `addtional_filter`
+#### `additional_filter`
 
 By default, the following query is run.
 
@@ -62,7 +62,7 @@ You can add filter by `additional_filter`.
 e.g.
 
 ```yaml
-additiona_filter: '-label:skip-autoclose'
+additional_filter: '-label:skip-autoclose'
 ```
 
 #### `github_token`'s required permission
